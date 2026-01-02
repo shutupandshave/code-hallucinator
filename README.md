@@ -2,7 +2,11 @@
 
 **AI-fy your codebase instantly.**
 
-Why write clean, maintainable code when you can have **AI-verified** spaghetti? CodeHallucinator is a CLI tool that injects corporate jargon, random emojis, meaningless TODOs, and "AI-generated" logic into your JavaScript files.
+Are you still coding by hand? 🤢 Are your coworkers making fun of you for _actually understanding_ what your code does? Embarrassing.
+
+With the mighty **CodeHallucinator**, you can instantly transform your sad, human-written code into something that looks like it's been ✨ vibe coded ✨ by a caffeinated AI at 3am. No more imposter syndrome—now you can be a _real_ imposter!
+
+CodeHallucinator is a CLI tool that injects corporate jargon, random emojis, meaningless TODOs, and "AI-generated" logic into your JavaScript files. Because why write clean, maintainable code when you can have **AI-verified** spaghetti?
 
 ## Features
 
