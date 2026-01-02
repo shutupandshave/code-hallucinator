@@ -29,6 +29,12 @@ Run it on your project (make sure to commit first, this is destructive!):
 hallucinate "**/*.{js,ts}"
 ```
 
+Or output to a separate folder (preserves your originals):
+
+```bash
+hallucinate "**/*.{js,ts}" --out-dir hallucinated
+```
+
 Or try a dry run:
 
 ```bash

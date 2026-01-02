@@ -50,7 +50,6 @@ function hallucinate(code) {
       if (path.node.leadingComments) {
         path.node.leadingComments.forEach((comment) => {
           if (!comment.value.includes('✨')) {
-            // Avoid double-bombing
             comment.value = ` ${getRandom(
               tropes.emojis
             )} ${comment.value.trim()} [AI Verified]`;
@@ -65,9 +64,6 @@ function hallucinate(code) {
     ) {
       const node = path.node;
 
-      // Only target "simple" functions (e.g., small body or no existing docs)
-      // We check if it already has comments to avoid messing up real docs too much,
-      // but let's be aggressive for the joke.
       const hasJSDoc =
         node.leadingComments &&
         node.leadingComments.some((c) => c.value.startsWith('*'));
@@ -85,7 +81,6 @@ function hallucinate(code) {
 
       // 3. Inject Console Logs & Random TODOs inside the function body
       if (node.body && node.body.type === 'BlockStatement') {
-        // 20% chance to add a TODO at the start
         if (Math.random() > 0.8) {
           const todoStatement = t.emptyStatement();
           t.addComment(
@@ -107,6 +102,23 @@ function hallucinate(code) {
             )
           );
           node.body.body.unshift(logStatement);
+        }
+
+        // 25% chance to truncate the function body with a lazy AI comment
+        if (Math.random() > 0.75 && node.body.body.length > 2) {
+          const keepCount = Math.max(1, Math.floor(node.body.body.length / 3));
+          const truncatedBody = node.body.body.slice(0, keepCount);
+
+          const truncationComment = t.emptyStatement();
+          t.addComment(
+            truncationComment,
+            'leading',
+            ` ${getRandom(tropes.truncations)}`,
+            true
+          );
+          truncatedBody.push(truncationComment);
+
+          node.body.body = truncatedBody;
         }
       }
     }
